@@ -1,0 +1,13 @@
+# Archivos de entorno y credenciales
+.env
+.env.local
+
+# Archivos del sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Directorios de logs o temporales de PHP/Apache
+logs/
+*.log
