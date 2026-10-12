@@ -2,6 +2,8 @@
 // ==========================================
 define('IA_BASE', getenv('IA_BASE') ?: 'http://172.16.15.10:5000');
 define('IA_TOKEN', getenv('IA_TOKEN') ?: 'unamba2026-Xk9Pq7Lm3Rt8Vw2Zc5'); // TOKEN
+define('WEB_CHROMA_SQLITE', getenv('WEB_CHROMA_SQLITE') ?: '');
+define('WEB_CHROMA_COLLECTION', getenv('WEB_CHROMA_COLLECTION') ?: 'web_unamba_qwen3');
 // ==========================================
 
 function puente_ia(string $ruta): void

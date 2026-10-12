@@ -33,6 +33,9 @@
         <div class="unamba-mode-container">
             <div class="unamba-mode-label">
                 <i class="bi bi-layers-fill"></i> Fuente de consulta:
+                <a class="unamba-audit-link" href="web-index.php" target="_blank" rel="noopener noreferrer">
+                    <i class="bi bi-database-check"></i> Ver índice web
+                </a>
             </div>
             <div class="unamba-mode-selector">
                 <button class="unamba-mode-btn active" id="btnModeWeb" onclick="setMode('web')">
