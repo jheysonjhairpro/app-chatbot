@@ -67,8 +67,8 @@
     </div>
 </div>
 
-<script src="assets/js/chat-core.js?v=2"></script>
-<script src="assets/js/modo-web.js?v=4"></script>
+<script src="assets/js/chat-core.js?v=3"></script>
+<script src="assets/js/modo-web.js?v=5"></script>
 <script src="assets/js/modo-docs.js?v=1"></script>
 <script src="assets/js/modo-academico.js?v=1"></script>
 

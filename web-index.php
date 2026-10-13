@@ -6,7 +6,7 @@
     <title>UNAMBA - Auditor de índice web</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/web-index.css?v=3">
+    <link rel="stylesheet" href="assets/web-index.css?v=4">
 </head>
 <body>
     <header class="audit-header">
@@ -24,7 +24,7 @@
         <section class="audit-panel audit-domains">
             <div class="audit-panel-title">
                 <div>
-                    <span>Subdominios</span>
+                    <span>Portales</span>
                     <strong id="domainCount">0</strong>
                 </div>
                 <button id="refreshBtn" title="Actualizar datos" aria-label="Actualizar datos">
@@ -33,7 +33,7 @@
             </div>
             <div class="audit-stats">
                 <div><span>Páginas</span><b id="totalPages">0</b></div>
-                <div><span>Chunks</span><b id="totalChunks">0</b></div>
+                <div><span>Enlaces documentales</span><b id="totalDocuments">0</b></div>
             </div>
             <div id="domainList" class="domain-list"></div>
         </section>
@@ -45,6 +45,11 @@
             </div>
             <div class="audit-current-filter" id="currentFilter">Todas las páginas indexadas</div>
             <div id="pageList" class="page-list"></div>
+            <nav class="audit-pagination" aria-label="Páginas del catálogo">
+                <button id="previousPage" aria-label="Página anterior" disabled>Anterior</button>
+                <span id="paginationStatus" role="status">0 resultados</span>
+                <button id="nextPage" aria-label="Página siguiente" disabled>Siguiente</button>
+            </nav>
         </section>
 
         <section class="audit-panel audit-detail">
@@ -59,7 +64,7 @@
                     <a id="detailUrl" href="#" target="_blank" rel="noopener noreferrer"></a>
                 </div>
                 <div class="detail-metrics">
-                    <span><i class="bi bi-file-text"></i> <b id="detailChunks">0</b> chunks</span>
+                    <span><i class="bi bi-file-text"></i> <b id="detailChunks">0</b> bloques de texto</span>
                     <span><i class="bi bi-fonts"></i> <b id="detailChars">0</b> caracteres</span>
                 </div>
                 <div class="detail-toolbar">
@@ -73,6 +78,6 @@
         </section>
     </main>
 
-    <script src="assets/js/web-index-viewer.js?v=2"></script>
+    <script src="assets/js/web-index-viewer.js?v=3"></script>
 </body>
 </html>

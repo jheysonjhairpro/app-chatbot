@@ -33,7 +33,7 @@ const chipOptions = {
 
 const chatHistories = {
     web: [
-        { text: "¡Hola! 👋 Estás en la sección <b>Portal Web</b>.<br><br>Consulta información indexada de las páginas públicas de la UNAMBA: trámites, servicios, admisión, costos, horarios, contactos y noticias. Las respuestas incluyen fuentes cuando hay evidencia disponible.", type: "unamba-msg-bot" }
+        { text: "¡Hola! 👋 Estás en la sección <b>Portal Web</b>.<br><br>Consulta información indexada de las páginas públicas de la UNAMBA: trámites, servicios, admisión, costos, horarios, contactos y noticias. Las respuestas incluyen fuentes cuando hay evidencia disponible.<br><br>Cada consulta es independiente: incluye en tu pregunta los datos necesarios. Usa <b>/estado</b> para comprobar la disponibilidad del servicio.", type: "unamba-msg-bot" }
     ],
     docs: [
         { text: "¡Hola! 📄 Estás en la sección <b>Normativas / PDF</b>.<br><br>Pregunta por el número de una resolución, por ejemplo: <i>¿Qué dice el artículo 1 de la Resolución 218-2026?</i><br><br>Comandos: <b>/pdfs</b>, <b>/pdf N</b>, <b>/todos</b>.", type: "unamba-msg-bot" }
