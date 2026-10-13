@@ -2,8 +2,8 @@
 // Conexiones exclusivas del modo web. PDF y académico conservan config.php.
 require_once __DIR__ . '/config.php';
 
-define('WEB_CHAT_BASE', rtrim(getenv('WEB_CHAT_BASE') ?: 'http://127.0.0.1:5000', '/'));
-//define('WEB_CHAT_BASE', rtrim(getenv('WEB_CHAT_BASE') ?: 'http://172.16.15.10:5000', '/'));
+//define('WEB_CHAT_BASE', rtrim(getenv('WEB_CHAT_BASE') ?: 'http://127.0.0.1:5000', '/'));
+define('WEB_CHAT_BASE', rtrim(getenv('WEB_CHAT_BASE') ?: 'http://172.16.15.10:5000', '/'));
 define('WEB_API_BASE', rtrim(getenv('WEB_API_BASE') ?: 'http://127.0.0.1:8002', '/'));
 
 function web_json(array $data, int $status = 200): void
