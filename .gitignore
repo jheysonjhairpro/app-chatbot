@@ -11,3 +11,5 @@ Thumbs.db
 # Directorios de logs o temporales de PHP/Apache
 logs/
 *.log
+# Ruta local al .env del servidor (se genera con iniciar.bat).
+/api/servidor.local.php

@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNAMBA - Asistente Virtual</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/chat.css?v=1">
-    <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="assets/chat.css?v=6">
+    <script src="assets/js/vendor/html2pdf.bundle.min.js"></script>
 </head>
 <body style="background-color: #eef2f5; height: 100vh; margin: 0;">
 
 <div id="unamba-chat-widget">
     <div class="unamba-bubble" onclick="toggleUnambaChat()">
+        <span class="unamba-server-dot unamba-bubble-status" data-server-status="checking" aria-hidden="true"></span>
         <i class="bi bi-mortarboard-fill"></i>
     </div>
 
@@ -20,11 +19,15 @@
         <div class="unamba-header">
             <div class="unamba-header-info">
                 <div class="unamba-avatar">
-                    <img src="http://www.unamba.edu.pe/wp-content/uploads/2026/09/logo-unamba-1.png" alt="UNAMBA">
+                    <img src="assets/img/logo-unamba.png" alt="UNAMBA">
                 </div>
                 <div>
                     <p class="unamba-title">Asistente UNAMBA</p>
                     <p class="unamba-subtitle">IA Institucional</p>
+                    <p class="unamba-server-status" id="unambaServerStatus" role="status" aria-live="polite" data-server-status="checking">
+                        <span class="unamba-server-dot" aria-hidden="true"></span>
+                        <span id="unambaServerStatusText">Comprobando servidor…</span>
+                    </p>
                 </div>
             </div>
             <i class="bi bi-x-lg unamba-close" onclick="toggleUnambaChat()"></i>
@@ -64,9 +67,9 @@
     </div>
 </div>
 
-<script src="assets/js/chat-core.js?v=2"></script>
-<script src="assets/js/modo-web.js?v=2"></script>
-<script src="assets/js/modo-docs.js?v=1"></script>
+<script src="assets/js/chat-core.js?v=8"></script>
+<script src="assets/js/modo-web.js?v=3"></script>
+<script src="assets/js/modo-docs.js?v=5"></script>
 <script src="assets/js/modo-academico.js?v=1"></script>
 
 </body>
