@@ -32,7 +32,7 @@ function configuracion_local_ia(): array
     $port = getenv('UNAMBA_PORT') ?: ($values['UNAMBA_PORT'] ?? '5000');
     if (!ctype_digit((string)$port) || (int)$port < 1 || (int)$port > 65535) { $port = '5000'; }
     return [
-        'base' => rtrim(getenv('IA_BASE') ?: 'http://127.0.0.1:' . $port, '/'),
+        'base' => rtrim(getenv('IA_BASE') ?: 'http://172.16.15.10:' . $port, '/'),
         'token' => getenv('IA_TOKEN') ?: (getenv('UNAMBA_TOKEN') ?: ($values['UNAMBA_TOKEN'] ?? '')),
     ];
 }
