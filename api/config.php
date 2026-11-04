@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-// Apache lee el .env del servidor; el navegador nunca recibe sus credenciales.
+// PHP lee la configuración privada del cliente; el navegador nunca recibe sus credenciales.
 function configuracion_local_ia(): array
 {
     $file = getenv('UNAMBA_ENV_FILE') ?: '';
@@ -14,7 +14,7 @@ function configuracion_local_ia(): array
     if ($file !== '' && is_readable($file)) {
         foreach (file($file, FILE_IGNORE_NEW_LINES) ?: [] as $line) {
             $line = trim($line, "\xEF\xBB\xBF \t\n\r\0\x0B");
-            if (!preg_match('/^(?:export\s+)?(UNAMBA_TOKEN|UNAMBA_PORT)\s*=\s*(.*)$/', $line, $match)) { continue; }
+            if (!preg_match('/^(?:export\s+)?(UNAMBA_TOKEN|UNAMBA_PORT|BASE|TOKEN)\s*=\s*(.*)$/', $line, $match)) { continue; }
             $value = trim($match[2]);
             if (str_starts_with($value, '"')) {
                 // El .env generado usa cadenas JSON entre comillas dobles.
@@ -32,8 +32,8 @@ function configuracion_local_ia(): array
     $port = getenv('UNAMBA_PORT') ?: ($values['UNAMBA_PORT'] ?? '5000');
     if (!ctype_digit((string)$port) || (int)$port < 1 || (int)$port > 65535) { $port = '5000'; }
     return [
-        'base' => rtrim(getenv('IA_BASE') ?: 'http://172.16.15.10:' . $port, '/'),
-        'token' => getenv('IA_TOKEN') ?: (getenv('UNAMBA_TOKEN') ?: ($values['UNAMBA_TOKEN'] ?? '')),
+        'base' => rtrim(getenv('IA_BASE') ?: ($values['BASE'] ?? ('http://172.16.15.10:' . $port)), '/'),
+        'token' => getenv('IA_TOKEN') ?: (getenv('UNAMBA_TOKEN') ?: ($values['TOKEN'] ?? ($values['UNAMBA_TOKEN'] ?? ''))),
     ];
 }
 

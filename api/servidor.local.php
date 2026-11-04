@@ -1,1 +1,2 @@
-<?php return base64_decode('QzovVXNlcnMva2FsZWYvT25lRHJpdmUvRGVza3RvcC9TRVJWSURPUi9hcHAtc2VydmVyLWNoYXRib3QtdmVyc2lvbi8uZW52');
+<?php
+return __DIR__ . '/.env';
