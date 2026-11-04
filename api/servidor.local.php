@@ -1,2 +1,2 @@
 <?php
-return __DIR__ . '/.env';
+return dirname(__DIR__) . '/.env';

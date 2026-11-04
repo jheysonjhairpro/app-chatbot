@@ -27,7 +27,7 @@ Si Apache usa otro puerto o cambias el nombre de la carpeta, ajusta la URL. La v
 
 Cuando la interfaz y la API están en la misma computadora, la configuración privada está en el `.env` de la raíz del servidor, fuera de `htdocs`. El lanzador genera `api/servidor.local.php` con la ubicación de ese archivo. El token no se entrega al navegador ni se incluye en JavaScript.
 
-Si la interfaz XAMPP está en otra computadora, crea `api/.env` a partir de `api/.env.example` dentro de esta carpeta y configura `BASE` con la URL de la API y `TOKEN` con el mismo valor de `UNAMBA_TOKEN` del servidor. `api/servidor.local.php` apunta a ese archivo local. No subas `api/.env` a Git; Apache bloquea su descarga mediante `.htaccess`.
+Si la interfaz XAMPP está en otra computadora, crea `.env` a partir de `.env.example` en la raíz de esta carpeta y configura `BASE` con la URL de la API y `TOKEN` con el mismo valor de `UNAMBA_TOKEN` del servidor. `api/servidor.local.php` apunta a ese archivo local. No subas `.env` a Git; Apache bloquea su descarga mediante `.htaccess`.
 
 Si mueves el servidor o la vista, actualiza `UNAMBA_UI_DIR` y vuelve a ejecutar el lanzador del servidor. No publiques `api/servidor.local.php`: es una referencia propia de cada computadora. Como alternativa puede configurarse `UNAMBA_ENV_FILE` en el entorno de Apache.
 
