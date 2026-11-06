@@ -2,6 +2,7 @@
 const ENDPOINTS = {
     web: 'api/web.php',
     docs: 'api/docs.php',
+    fut: 'api/fut.php',
     historial: 'api/ssaa/historial.php',
     constancias: 'api/ssaa/constancias.php'
 };
@@ -26,6 +27,10 @@ const chipOptions = {
         { label: "Consultar mi historial académico", question: "/historial", icon: "bi-file-earmark-person" },
         { label: "Obtener mi constancia de matrícula", question: "/constancias", icon: "bi-file-earmark-check" },
         { label: "Cancelar consulta", question: "/cancelar", icon: "bi-x-circle" }
+    ],
+    fut: [
+        { label: 'Iniciar un FUT', question: '/iniciar', icon: 'bi-file-earmark-text' },
+        { label: 'Cancelar borrador', question: '/cancelar', icon: 'bi-x-circle' }
     ]
 };
 
@@ -38,6 +43,9 @@ const chatHistories = {
     ],
     academic: [
         { text: "🎓 Estás en <b>Consultas universitarias</b>.<br><br>Escribe <b>/historial</b> para solicitar tu historial académico o <b>/constancias</b> para obtener tu constancia de matrícula. Por seguridad, tu DNI se ocultará y no se guardará en el chat.<span class=\"unamba-privacy-note\">Usa este servicio únicamente para consultar tu propia información académica.</span>", type: "unamba-msg-bot" }
+    ],
+    fut: [
+        { text: 'Hola, te ayudo a preparar tu <b>Formulario Único de Trámite</b>. Puedes contarme con tus palabras qué necesitas; si no sabes el nombre de una autoridad, dime su cargo o área y lo buscaré. Revisaremos juntos los datos antes de descargar el PDF para firmarlo.<br><br>Escribe tu trámite o elige <b>Iniciar un FUT</b>.', type: 'unamba-msg-bot' }
     ]
 };
 
@@ -68,6 +76,7 @@ function setMode(mode) {
     document.getElementById('btnModeWeb').classList.toggle('active', mode === 'web');
     document.getElementById('btnModeDocs').classList.toggle('active', mode === 'docs');
     document.getElementById('btnModeAcademic').classList.toggle('active', mode === 'academic');
+    document.getElementById('btnModeFut').classList.toggle('active', mode === 'fut');
 
     renderCurrentChat();
     renderChips();

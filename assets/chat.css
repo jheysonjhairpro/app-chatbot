@@ -78,7 +78,7 @@
     content: ''; position: absolute; bottom: -2px; left: 20%; right: 20%; height: 3px;
     background: var(--unamba-gold); border-radius: 2px;
 }
-#btnModeAcademic { flex-basis: 100%; }
+#btnModeAcademic, #btnModeFut { flex-basis: calc(50% - 3px); }
 
 .unamba-messages {
     flex: 1; padding: 16px; overflow-y: auto; background: var(--unamba-bg);

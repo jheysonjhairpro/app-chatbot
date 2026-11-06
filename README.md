@@ -4,32 +4,31 @@ Interfaz PHP del asistente institucional. Ofrece consultas del portal, documento
 
 ## Requisitos
 
-XAMPP con Apache y PHP 8 o posterior, con cURL y mbstring habilitados, y un navegador moderno con JavaScript. El servidor del chatbot debe estar disponible en el mismo equipo para consultar portal y PDF. Historial académico y constancias dependen de servicios externos.
+XAMPP con Apache y PHP 8 o posterior, con cURL y mbstring habilitados, y un navegador moderno con JavaScript. La API del chatbot debe estar accesible desde este equipo. Historial académico y constancias dependen de servicios externos.
 
 Los recursos visuales y scripts están incluidos en `assets/`. La vista no necesita Node.js ni compilación.
 
 ## Instalación e inicio
 
-1. Coloca esta carpeta en `C:\xampp\htdocs\app-chatbot-first-commit`.
-2. En el `.env` de la raíz del servidor, configura:
+1. Coloca esta carpeta en `C:\xampp\htdocs\app-chatbot`.
+2. Copia `.env.example` a `.env` en esta carpeta y configura `BASE` con la URL de la API y `TOKEN` con el mismo valor de `UNAMBA_TOKEN` del servidor.
+3. En el `.env` de la raíz del servidor, configura:
 
    ```dotenv
-   UNAMBA_UI_DIR="C:/xampp/htdocs/app-chatbot-first-commit"
+   UNAMBA_UI_DIR="C:/xampp/htdocs/app-chatbot"
    ```
 
-3. Ejecuta `iniciar.bat` del servidor. Genera `api/servidor.local.php` si encuentra la vista.
-4. Inicia **Apache** desde XAMPP.
-5. Abre [el chatbot](http://localhost/app-chatbot-first-commit/) o [el chat desplegado](http://localhost/app-chatbot-first-commit/?chat=1).
+4. Ejecuta `iniciar.bat` del servidor.
+5. Inicia **Apache** desde XAMPP.
+6. Abre [el chatbot](http://localhost/app-chatbot/) o [el chat desplegado](http://localhost/app-chatbot/?chat=1).
 
 Si Apache usa otro puerto o cambias el nombre de la carpeta, ajusta la URL. La vista no tiene un `.bat` propio. El lanzador del servidor inicia la API, Ollama y el panel documental, cuya página se abre automáticamente. Apache se administra desde XAMPP.
 
 ## Configuración y conexión
 
-Cuando la interfaz y la API están en la misma computadora, la configuración privada está en el `.env` de la raíz del servidor, fuera de `htdocs`. El lanzador genera `api/servidor.local.php` con la ubicación de ese archivo. El token no se entrega al navegador ni se incluye en JavaScript.
+PHP lee `BASE` y `TOKEN` del `.env` en la raíz de esta carpeta, tanto si la API está en el mismo equipo como si está en otro. No subas `.env` a Git; Apache bloquea su descarga mediante `.htaccess`. El token no se entrega al navegador ni se incluye en JavaScript.
 
-Si la interfaz XAMPP está en otra computadora, crea `.env` a partir de `.env.example` en la raíz de esta carpeta y configura `BASE` con la URL de la API y `TOKEN` con el mismo valor de `UNAMBA_TOKEN` del servidor. `api/servidor.local.php` apunta a ese archivo local. No subas `.env` a Git; Apache bloquea su descarga mediante `.htaccess`.
-
-Si mueves el servidor o la vista, actualiza `UNAMBA_UI_DIR` y vuelve a ejecutar el lanzador del servidor. No publiques `api/servidor.local.php`: es una referencia propia de cada computadora. Como alternativa puede configurarse `UNAMBA_ENV_FILE` en el entorno de Apache.
+Como alternativa, configura `UNAMBA_ENV_FILE` en el entorno de Apache para usar un `.env` fuera de `htdocs`.
 
 Usa el `.env` para mantener el mismo puerto y token en ambos procesos. Si los sobreescribes mediante variables de entorno, aplica valores coincidentes en Apache. `IA_BASE` e `IA_TOKEN` del entorno de Apache tienen prioridad sobre el archivo.
 
@@ -46,6 +45,15 @@ El punto aparece en la cabecera y en la burbuja del chat:
 Se actualiza cada 8 segundos mientras la pestaña está visible y al regresar a ella. Usa `api/estado.php` para comprobar `/salud` de la API. No confirma la disponibilidad de modelos, índices ni servicios académicos externos.
 
 ## Modos de consulta
+
+### Crear FUT
+
+El asistente pregunta por el tipo de trámite, destinatario, datos personales,
+fundamentación y adjuntos. Antes de generar el archivo permite corregir campos
+con `campo: nuevo valor`. Con `/generar` entrega un PDF para revisar y firmar;
+`/cancelar` descarta el borrador. El token de descarga vence después de
+15 minutos. El módulo requiere la ruta `/fut/chat` y `/fut/download` de la
+versión correspondiente del servidor Python.
 
 ### Portal Web
 
@@ -71,13 +79,14 @@ Permite solicitar **mi historial académico** o **mi constancia de matrícula**.
 ## Estructura
 
 ```text
-app-chatbot-first-commit/
+app-chatbot/
   index.php                     Ventana del chat y selector de modos
   README.md
   .gitignore
   api/
     config.php                  Lectura del .env y puente PHP con streaming
-    servidor.local.php          Ruta al .env, generada por el servidor
+    fut.php                     Puente del asistente FUT
+    fut-descargar.php           Descarga protegida del FUT
     estado.php                  Comprobación de disponibilidad de la API
     web.php                     Puente de Portal Web
     docs.php                    Puente de Normativas / PDF
@@ -88,6 +97,7 @@ app-chatbot-first-commit/
     js/modo-web.js              Adaptador del portal
     js/modo-docs.js             Lista y selección de PDF
     js/modo-academico.js        Flujo de servicios académicos
+    js/modo-fut.js              Interfaz del asistente FUT
     js/vendor/                  Biblioteca local para generar PDF
     fonts/                      Iconos locales
     img/                        Imágenes del chatbot
@@ -106,7 +116,7 @@ Después de modificar HTML, CSS o JavaScript, recarga con **Ctrl + F5**. Despué
 | La página no abre | Apache iniciado, ubicación en `htdocs`, nombre y puerto de la URL. |
 | Punto gris | Servidor iniciado y disponible en `/salud` del puerto configurado. |
 | Punto verde pero falla una respuesta | Registros del servidor, Ollama, modelos e índice del modo consultado. |
-| Falta enlazar la configuración | `UNAMBA_UI_DIR`, `api/servidor.local.php` y permisos de lectura del `.env`. |
+| Falta configurar la conexión | `BASE` y `TOKEN` en el `.env` de esta carpeta. |
 | Error de autorización | Token coincidente entre Apache y API; revisa variables de entorno antiguas. |
 | Faltan extensiones PHP | Habilita cURL y mbstring en PHP de XAMPP y reinicia Apache. |
 | Aparecen nombres antiguos o comandos sin formato | Ctrl + F5; si cambió código Python, reinicia también el servidor. |
@@ -114,4 +124,4 @@ Después de modificar HTML, CSS o JavaScript, recarga con **Ctrl + F5**. Despué
 
 ## Traslado a otro equipo
 
-Copia la vista a `htdocs` y prepara el servidor por separado. No reutilices `api/servidor.local.php` de la computadora anterior: regenera el enlace con `UNAMBA_UI_DIR` actualizado y el lanzador del servidor. Mantén el `.env` privado fuera de la carpeta pública de Apache.
+Copia la vista a `htdocs` y prepara el servidor por separado. Configura `BASE` y `TOKEN` en el `.env` del cliente con los valores correspondientes a esa API. Si usas un archivo fuera de `htdocs`, indica su ruta mediante `UNAMBA_ENV_FILE` en Apache.

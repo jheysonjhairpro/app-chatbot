@@ -47,6 +47,9 @@
                 <button class="unamba-mode-btn" id="btnModeAcademic" onclick="setMode('academic')">
                     <i class="bi bi-person-vcard"></i> Consultas universitarias
                 </button>
+                <button class="unamba-mode-btn" id="btnModeFut" onclick="setMode('fut')">
+                    <i class="bi bi-file-earmark-text"></i> Crear FUT
+                </button>
             </div>
         </div>
 
@@ -67,10 +70,11 @@
     </div>
 </div>
 
-<script src="assets/js/chat-core.js?v=8"></script>
+<script src="assets/js/chat-core.js?v=9"></script>
 <script src="assets/js/modo-web.js?v=3"></script>
 <script src="assets/js/modo-docs.js?v=5"></script>
 <script src="assets/js/modo-academico.js?v=1"></script>
+<script src="assets/js/modo-fut.js?v=1"></script>
 
 </body>
 </html>

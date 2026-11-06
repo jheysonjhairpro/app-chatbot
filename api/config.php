@@ -4,12 +4,7 @@ declare(strict_types=1);
 // PHP lee la configuración privada del cliente; el navegador nunca recibe sus credenciales.
 function configuracion_local_ia(): array
 {
-    $file = getenv('UNAMBA_ENV_FILE') ?: '';
-    $link = __DIR__ . '/servidor.local.php';
-    if ($file === '' && is_file($link)) {
-        $configured = require $link;
-        if (is_string($configured)) { $file = $configured; }
-    }
+    $file = getenv('UNAMBA_ENV_FILE') ?: dirname(__DIR__) . '/.env';
     $values = [];
     if ($file !== '' && is_readable($file)) {
         foreach (file($file, FILE_IGNORE_NEW_LINES) ?: [] as $line) {
@@ -32,7 +27,7 @@ function configuracion_local_ia(): array
     $port = getenv('UNAMBA_PORT') ?: ($values['UNAMBA_PORT'] ?? '5000');
     if (!ctype_digit((string)$port) || (int)$port < 1 || (int)$port > 65535) { $port = '5000'; }
     return [
-        'base' => rtrim(getenv('IA_BASE') ?: ($values['BASE'] ?? ('http://172.16.15.10:' . $port)), '/'),
+        'base' => rtrim(getenv('IA_BASE') ?: ($values['BASE'] ?? ('http://127.0.0.1:' . $port)), '/'),
         'token' => getenv('IA_TOKEN') ?: (getenv('UNAMBA_TOKEN') ?: ($values['TOKEN'] ?? ($values['UNAMBA_TOKEN'] ?? ''))),
     ];
 }
@@ -73,7 +68,7 @@ function puente_ia(string $ruta): void
     }
     if (IA_TOKEN === '') {
         http_response_code(503);
-        echo 'Falta enlazar la vista con el servidor. Revisa UNAMBA_UI_DIR en el .env y ejecuta iniciar.bat.';
+        echo 'Falta configurar el token de la API. Revisa TOKEN en el .env del cliente.';
         return;
     }
     set_time_limit(0);
