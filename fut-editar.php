@@ -15,7 +15,7 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self'; style-sr
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Editar FUT · UNAMBA</title>
-    <link rel="stylesheet" href="assets/fut-editor.css?v=3">
+    <link rel="stylesheet" href="assets/fut-editor.css?v=4">
 </head>
 <body data-token="<?= htmlspecialchars($token, ENT_QUOTES, 'UTF-8') ?>">
     <header class="editor-header">
