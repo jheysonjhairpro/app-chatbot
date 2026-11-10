@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNAMBA - Asistente Virtual</title>
-    <link rel="stylesheet" href="assets/chat.css?v=6">
+    <link rel="stylesheet" href="assets/chat.css?v=7">
     <script src="assets/js/vendor/html2pdf.bundle.min.js"></script>
 </head>
 <body style="background-color: #eef2f5; height: 100vh; margin: 0;">
@@ -74,7 +74,7 @@
 <script src="assets/js/modo-web.js?v=3"></script>
 <script src="assets/js/modo-docs.js?v=5"></script>
 <script src="assets/js/modo-academico.js?v=1"></script>
-<script src="assets/js/modo-fut.js?v=1"></script>
+<script src="assets/js/modo-fut.js?v=3"></script>
 
 </body>
 </html>

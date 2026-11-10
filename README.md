@@ -55,6 +55,11 @@ con `campo: nuevo valor`. Con `/generar` entrega un PDF para revisar y firmar;
 15 minutos. El módulo requiere la ruta `/fut/chat` y `/fut/download` de la
 versión correspondiente del servidor Python.
 
+Debajo de la descarga aparece **Editar este FUT**. Abre una ventana con los campos
+del borrador y el PDF original para revisar. Al aplicar cambios, genera una copia
+editada en el navegador mediante la biblioteca local `pdf-lib`; el servidor Python
+no se modifica ni almacena esta edición. Si el enlace caduca, genera otro FUT.
+
 ### Portal Web
 
 Pregunta sobre la información de los documentos extraídos de la UNAMBA. Las cuatro preguntas destacadas priorizan carreras, Beca Permanencia, trámites virtuales y pagos virtuales. Al pulsarlas se envía la pregunta.
